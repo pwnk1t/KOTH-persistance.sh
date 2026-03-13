@@ -87,7 +87,7 @@ echo ""
 echo "[+] Backdoors installed"
 sleep 2
 echo "[!] /tmp/rootbash -p for suid backdoor" 
-sleep2
+sleep 2
 echo "[!] Open listeners:"
 echo ""
 sleep 1
