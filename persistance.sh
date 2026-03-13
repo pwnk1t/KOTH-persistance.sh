@@ -11,7 +11,7 @@ clear
 
 read -p "Attacker IP: " IP
 
-echo "[+] Installing persistence..."
+echo "[💀] Installing persistence..."
 
 sleep 2
 ################################
