@@ -1,6 +1,6 @@
 Run this Script as Root !
 
-chmod +x persistance.sh 
+chmod +x backdoor.sh 
 
 ./persistance.sh 
 
